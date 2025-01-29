@@ -92,6 +92,10 @@ class RSAApp:
         self.private_key = None
         self.public_key = None
 
+        # Привязка горячих клавиш
+        self.key_display.bind("<Control-a>", self.select_all)
+        self.result_text.bind("<Control-a>", self.select_all)
+
         # Показать начальную вкладку
         self.show_key_frame()
 
@@ -161,13 +165,19 @@ class RSAApp:
 
     def load_file(self):
         file_path = filedialog.askopenfilename(filetypes=[("Text Files", "*.txt")])
-        with open(file_path, "r") as file:
-            self.text_entry.insert(tk.END, file.read())
+        if file_path:
+            with open(file_path, "r") as file:
+                self.text_entry.insert(tk.END, file.read())
 
     def save_encrypted_file(self):
         file_path = filedialog.asksaveasfilename(defaultextension=".txt")
-        with open(file_path, "w") as file:
-            file.write(self.result_text.get("1.0", tk.END).strip())
+        if file_path:
+            with open(file_path, "w") as file:
+                file.write(self.result_text.get("1.0", tk.END).strip())
+
+    def select_all(self, event):
+        event.widget.tag_add("sel", "1.0", "end")
+        return "break"
 
 
 root = tk.Tk()
