@@ -12,7 +12,6 @@ class RSAApp:
         self.root.geometry("600x550")
         self.root.configure(bg="#f0f0f0")
 
-        # === Верхнее меню переключения вкладок ===
         self.menu_frame = tk.Frame(self.root, bg="#d9d9d9", height=40)
         self.menu_frame.pack(fill="x")
 
@@ -28,11 +27,9 @@ class RSAApp:
         )
         self.encryption_btn.pack(side=tk.LEFT, padx=5, pady=5)
 
-        # === Разделительная полоса ===
         self.separator = tk.Frame(self.root, bg="black", height=2)
         self.separator.pack(fill="x")
 
-        # === Вкладка: Управление ключами ===
         self.key_frame = tk.Frame(self.root, bg="#f0f0f0")
 
         self.gen_key_btn = tk.Button(
@@ -50,7 +47,6 @@ class RSAApp:
         self.key_display = tk.Text(self.key_frame, height=10, width=70, wrap="word", font=("Arial", 10))
         self.key_display.pack(pady=5)
 
-        # === Вкладка: Шифрование и дешифрование ===
         self.encryption_frame = tk.Frame(self.root, bg="#f0f0f0")
 
         self.text_entry = tk.Text(self.encryption_frame, height=5, width=60, font=("Arial", 10))
@@ -92,11 +88,9 @@ class RSAApp:
         self.private_key = None
         self.public_key = None
 
-        # Привязка горячих клавиш
         self.key_display.bind("<Control-a>", self.select_all)
         self.result_text.bind("<Control-a>", self.select_all)
 
-        # Показать начальную вкладку
         self.show_key_frame()
 
     def show_key_frame(self):
