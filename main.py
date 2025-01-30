@@ -87,7 +87,7 @@ class RSAApp:
 
         self.private_key = None
         self.public_key = None
-
+        # Не сильно работает
         self.key_display.bind("<Control-a>", self.select_all)
         self.result_text.bind("<Control-a>", self.select_all)
 
